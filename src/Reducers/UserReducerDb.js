@@ -3,6 +3,7 @@ const INITIAL_STATE ={
   loading: false}
 
 export default (state = INITIAL_STATE, action) => {
+  console.log(action)
   switch(action.type) {
   case 'USER_FETCH_SUCCESS':
     return {...state, users: action.payload, loading: false}

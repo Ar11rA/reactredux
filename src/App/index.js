@@ -5,7 +5,7 @@ import * as actions from '../Actions'
 
 class App extends Component {
   componentWillMount() {
-    this.props.fetchUsers()
+    this.props.fetchAllUsers()
   }
   handleInput(event) {
     this.props.handleInput(event.target.value)
@@ -27,7 +27,7 @@ class App extends Component {
         {this.renderUsers(users)}
         <div style={styles.containerStyles}>
           <input style={styles.inputStyles} type="text" value={this.props.form.username} onChange={this.handleInput.bind(this)}/>
-          <button style={styles.buttonStyles} onClick={ () =>  this.insertUser.bind(this, this.props.form.username)}>create</button>
+          <button style={styles.buttonStyles} onClick={this.insertUser.bind(this, this.props.form.username)}>create</button>
         </div>
       </div>
     )
