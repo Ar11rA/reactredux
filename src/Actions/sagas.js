@@ -11,7 +11,6 @@ export function* watchFetch() {
 }
 
 export function* insertUser(action) {
-  console.log('3', action)
   const options = { username: action.payload }
   const response = yield axios.post('http://localhost:9999/users', options)
   yield put({type: 'USER_INSERT_SUCCESS', payload: response.data.Users})

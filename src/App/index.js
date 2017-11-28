@@ -40,7 +40,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     users: state.users,
     usersDb: state.usersDb,
