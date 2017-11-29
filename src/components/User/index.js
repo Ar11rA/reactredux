@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as actions from '../Actions'
+import * as actions from '../../Actions'
 
-class App extends Component {
+class User extends Component {
   componentWillMount() {
     this.props.fetchAllUsers()
   }
@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(User)
 
 const styles = {
   divStyles: {
