@@ -17,3 +17,16 @@ export const insertUser = (username) => {
     payload: username
   }
 }
+
+export const fetchAllPosts = () => {
+  return {
+    type: 'POST_FETCH_SUCCESS_ASYNC'
+  }
+}
+
+export const fetchOnePost = (id) => {
+  return {
+    type: 'POST_ONE_FETCH_SUCCESS_ASYNC',
+    payload: id
+  }
+}

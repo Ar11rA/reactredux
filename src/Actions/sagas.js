@@ -6,7 +6,7 @@ export function* fetchUsers() {
   yield put({type: 'USER_FETCH_SUCCESS', payload: result.data.Users})
 }
 
-export function* watchFetch() {
+export function* watchFetchUsers() {
   yield takeEvery('USER_FETCH_SUCCESS_ASYNC', fetchUsers)
 }
 
@@ -17,13 +17,33 @@ export function* insertUser(action) {
   yield put({type: 'CHANGE_INPUT', payload: ''})
 }
 
-export function* watchInsert() {
+export function* watchInsertUsers() {
   yield takeEvery('USER_INSERT_SUCCESS_ASYNC', insertUser)
+}
+
+export function* fetchPosts(action) {
+  const response = yield (axios.get('http://localhost:9999/posts'))
+  yield put({type: 'POST_FETCH_SUCCESS', payload: response.data.Posts}) 
+}
+
+export function* watchFetchPosts() {
+  yield takeEvery('POST_FETCH_SUCCESS_ASYNC', fetchPosts)
+}
+
+export function* fetchPost(action) {
+  const response = yield (axios.get(`http://localhost:9999/posts/${action.payload}`))
+  yield put({type: 'POST_DETAIL_FETCH_SUCCESS', payload: response.data.Post}) 
+}
+
+export function* watchFetchPost() {
+  yield takeEvery('POST_ONE_FETCH_SUCCESS_ASYNC', fetchPost)
 }
 
 export default function* rootSaga() {
   yield [
-    watchFetch(),
-    watchInsert()
+    watchFetchUsers(),
+    watchInsertUsers(),
+    watchFetchPosts(),
+    watchFetchPost()
   ]
 }
