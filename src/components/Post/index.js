@@ -11,7 +11,6 @@ class Post extends Component {
   }
 
   renderPostList() {
-    console.log(this.props)
     return this.props.postsDb.posts.map((post) => <li> <Link to={`/posts/${post.id}`}> {post.title} </Link></li>)
   }
 

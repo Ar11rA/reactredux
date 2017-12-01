@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../Actions'
@@ -10,7 +9,6 @@ class PostDetail extends Component {
   }
   componentWillMount() {
     const id = this.props.match.params.id
-    console.log(this.props)
     this.props.fetchOnePost(id)
   }
   renderPost() {

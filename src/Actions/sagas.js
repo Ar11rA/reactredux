@@ -2,6 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 
 export function* fetchUsers() {
+  yield put({ type: 'USER_START' })
   const result = yield (axios.get('http://localhost:9999/users'))
   yield put({type: 'USER_FETCH_SUCCESS', payload: result.data.Users})
 }
@@ -22,6 +23,7 @@ export function* watchInsertUsers() {
 }
 
 export function* fetchPosts(action) {
+  yield put({ type: 'POST_START' })
   const response = yield (axios.get('http://localhost:9999/posts'))
   yield put({type: 'POST_FETCH_SUCCESS', payload: response.data.Posts}) 
 }
@@ -31,6 +33,7 @@ export function* watchFetchPosts() {
 }
 
 export function* fetchPost(action) {
+  yield put({ type: 'POST_DETAIL_START' })
   const response = yield (axios.get(`http://localhost:9999/posts/${action.payload}`))
   yield put({type: 'POST_DETAIL_FETCH_SUCCESS', payload: response.data.Post}) 
 }
