@@ -4,9 +4,6 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../../Actions'
 
 class PostDetail extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentWillMount() {
     const id = this.props.match.params.id
     this.props.fetchOnePost(id)

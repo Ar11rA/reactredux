@@ -73,7 +73,7 @@ const styles = {
     margin: 20
   },
   textStyles: {
-    fontSize: 14
+    fontSize: 18
   },
   buttonStyles: {
     background: 'rgba(0,0,0,0.8)',

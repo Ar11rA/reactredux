@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects'
+import { put, call, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 
 export function* fetchUsers() {
@@ -24,7 +24,7 @@ export function* watchInsertUsers() {
 
 export function* fetchPosts(action) {
   yield put({ type: 'POST_START' })
-  const response = yield (axios.get('http://localhost:9999/posts'))
+  const response = yield call (axios.get,'http://localhost:9999/posts')
   yield put({type: 'POST_FETCH_SUCCESS', payload: response.data.Posts}) 
 }
 
