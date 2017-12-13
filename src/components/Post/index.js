@@ -7,7 +7,8 @@ import * as actions from '../../Actions'
 class Post extends Component {
   
   componentWillMount() {
-    this.props.fetchAllPosts()
+    console.log(this.props.auth)
+    this.props.fetchAllPosts(this.props.auth.token)
   }
 
   renderPostList() {
@@ -30,7 +31,8 @@ class Post extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    postsDb: state.postsDb
+    postsDb: state.postsDb,
+    auth: state.auth
   }
 }
 

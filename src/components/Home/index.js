@@ -9,7 +9,7 @@ class Home extends Component {
         <nav style={navbarStyle}>
           <ul style={ulStyle}>
             <li style={liStyle}><Link style={linkStyle} to='/'>Home</Link></li>
-            <li style={liStyle}><Link style={linkStyle} to='/users'>Users</Link></li>
+            <li style={liStyle}><Link style={linkStyle} to='/login'>Login</Link></li>
             <li style={liStyle}><Link style={linkStyle} to='/posts'>Posts</Link></li>
           </ul>
         </nav>

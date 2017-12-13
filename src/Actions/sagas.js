@@ -22,9 +22,30 @@ export function* watchInsertUsers() {
   yield takeEvery('USER_INSERT_SUCCESS_ASYNC', insertUser)
 }
 
+export function* loginUser(action) {
+  yield put({ type: 'LOGIN_START' })
+  const options = { 
+    username: action.payload.email, 
+    password: action.payload.password 
+  }
+  const response = yield axios.post('http://localhost:9999/login', options)
+  yield put({type: 'LOGIN_SUCCESS', payload: response.data.token})
+  yield put({type: 'CHANGE_INPUT_EMAIL', payload: ''})
+  yield put({type: 'CHANGE_INPUT_PASSWORD', payload: ''})
+}
+
+export function* watchLoginUser() {
+  yield takeEvery('LOGIN_USER_ASYNC', loginUser)
+}
+
 export function* fetchPosts(action) {
+  const config = {
+    headers: {
+      'Authorization': action.payload
+    }
+  }
   yield put({ type: 'POST_START' })
-  const response = yield call (axios.get,'http://localhost:9999/posts')
+  const response = yield call (axios.get,'http://localhost:9999/posts', config)
   yield put({type: 'POST_FETCH_SUCCESS', payload: response.data.Posts}) 
 }
 
@@ -47,6 +68,7 @@ export default function* rootSaga() {
     watchFetchUsers(),
     watchInsertUsers(),
     watchFetchPosts(),
-    watchFetchPost()
+    watchFetchPost(),
+    watchLoginUser()
   ]
 }
