@@ -13,11 +13,10 @@ class Login extends Component {
     this.props.handleInputPassword(event.target.value)
   }
   loginUser(email, password) {
-    this.props.loginUser(email, password)
+    this.props.loginUser(email, password, this.props.history)
   }
   render() {
-    console.log(this.props.auth.loggedIn)
-    if(this.props.auth.loggedIn){
+    if(localStorage.getItem('token')){
       this.props.history.push('/posts')
     }
     return (

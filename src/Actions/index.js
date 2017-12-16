@@ -31,10 +31,10 @@ export const insertUser = (username) => {
   }
 }
 
-export const loginUser = (email, password) => {
+export const loginUser = (email, password, history) => {
   return {
     type: 'LOGIN_USER_ASYNC',
-    payload: { email, password }
+    payload: { email, password, history }
   }
 }
 export const fetchAllPosts = (token) => {

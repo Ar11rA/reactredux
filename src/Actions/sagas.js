@@ -29,9 +29,12 @@ export function* loginUser(action) {
     password: action.payload.password 
   }
   const response = yield axios.post('http://localhost:9999/login', options)
+  const token = response.data.token
+  sessionStorage.setItem('token', token)
   yield put({type: 'LOGIN_SUCCESS', payload: response.data.token})
   yield put({type: 'CHANGE_INPUT_EMAIL', payload: ''})
   yield put({type: 'CHANGE_INPUT_PASSWORD', payload: ''})
+  action.payload.history.push('/posts')
 }
 
 export function* watchLoginUser() {
@@ -41,7 +44,7 @@ export function* watchLoginUser() {
 export function* fetchPosts(action) {
   const config = {
     headers: {
-      'Authorization': action.payload
+      'Authorization': sessionStorage.getItem('token')
     }
   }
   yield put({ type: 'POST_START' })
@@ -54,8 +57,13 @@ export function* watchFetchPosts() {
 }
 
 export function* fetchPost(action) {
+  const config = {
+    headers: {
+      'Authorization': sessionStorage.getItem('token')
+    }
+  }
   yield put({ type: 'POST_DETAIL_START' })
-  const response = yield (axios.get(`http://localhost:9999/posts/${action.payload}`))
+  const response = yield (axios.get(`http://localhost:9999/posts/${action.payload}`, config))
   yield put({type: 'POST_DETAIL_FETCH_SUCCESS', payload: response.data.Post}) 
 }
 

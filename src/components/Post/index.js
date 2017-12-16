@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../Actions'
-
 class Post extends Component {
-  
+
   componentWillMount() {
-    console.log(this.props.auth)
-    this.props.fetchAllPosts(this.props.auth.token)
+    this.props.fetchAllPosts()
   }
 
   renderPostList() {
-    return this.props.postsDb.posts.map((post) => <li> <Link to={`/posts/${post.id}`}> {post.title} </Link></li>)
+    return this.props.postsDb.posts.map((post, index) => <li key={index}> <Link to={`/posts/${post.id}`}> {post.title} </Link></li>)
   }
 
   render() {
@@ -31,8 +29,7 @@ class Post extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    postsDb: state.postsDb,
-    auth: state.auth
+    postsDb: state.postsDb
   }
 }
 
